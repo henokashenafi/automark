@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme.dart';
 
 class AnswerKeyPage extends StatefulWidget {
@@ -19,29 +20,33 @@ class _AnswerKeyPageState extends State<AnswerKeyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AskualaTheme.backgroundColor,
+      appBar: AppBar(
+        title: Text(
+          'SET ANSWER KEY',
+          style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Setup Answer Key',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ).animate().fade().slideX(),
-                    const SizedBox(height: 8),
                     const Text(
-                      'Define the correct answers for your exam.',
-                      style: TextStyle(color: AskualaTheme.mutedTextColor),
+                      'Exam Settings',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
                     _buildSettingsCard(),
                     const SizedBox(height: 32),
                     const Text(
-                      'Questions & Answers',
+                      'Correct Answers',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -61,49 +66,57 @@ class _AnswerKeyPageState extends State<AnswerKeyPage> {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 100)),
+            const SliverToBoxAdapter(child: SizedBox(height: 120)),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Answer Key Saved Successfully!'), backgroundColor: AskualaTheme.secondaryColor),
+            const SnackBar(
+              content: Text('Answer Key Saved Successfully!'),
+              backgroundColor: AskualaTheme.secondaryColor,
+              behavior: SnackBarBehavior.floating,
+            ),
           );
         },
-        label: const Text('Save Answer Key', style: TextStyle(color: Colors.white)),
-        icon: const Icon(Icons.save, color: Colors.white),
+        label: const Text('Save Changes', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        icon: const Icon(Icons.check_circle_outline, color: Colors.white),
         backgroundColor: AskualaTheme.primaryColor,
-      ).animate().scale(delay: 500.ms),
+      ).animate().scale(delay: 400.ms),
     );
   }
 
   Widget _buildSettingsCard() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withOpacity(0.04),
             blurRadius: 20,
-            offset: const Offset(0, 10),
+            offset: const Offset(0, 8),
           ),
         ],
       ),
       child: Column(
         children: [
-          _buildInputField('Exam Type', _examType, (val) => setState(() => _examType = val)),
-          const Divider(height: 32),
+          _buildInputField('Exam Name', _examType, (val) => setState(() => _examType = val)),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: Divider(height: 1),
+          ),
           Row(
             children: [
               Expanded(
                 child: _buildNumberField('Questions', _questionCount, (val) => setState(() => _questionCount = val)),
               ),
+              Container(width: 1, height: 40, color: Colors.grey.shade100),
               const SizedBox(width: 16),
               Expanded(
-                child: _buildNumberField('Total Marks', _totalMarks.toInt(), (val) => setState(() => _totalMarks = val.toDouble())),
+                child: _buildNumberField('Marks', _totalMarks.toInt(), (val) => setState(() => _totalMarks = val.toDouble())),
               ),
             ],
           ),

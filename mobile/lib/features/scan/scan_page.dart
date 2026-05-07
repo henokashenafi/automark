@@ -77,7 +77,7 @@ class _ScanPageState extends State<ScanPage> {
                 const Icon(Icons.check_circle, color: AskualaTheme.secondaryColor, size: 32),
                 const SizedBox(width: 12),
                 Text(
-                  'Analysis Complete',
+                  'Exam Marked',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
@@ -147,9 +147,15 @@ class _ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'MARK EXAM',
+          style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
           child: Column(
             children: [
               Expanded(

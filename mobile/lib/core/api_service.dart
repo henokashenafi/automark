@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  static const String baseUrl = 'http://10.47.82.18:8000'; // Your local IP
+  static const String baseUrl = 'http://192.168.1.8:8000'; // Your local IP
 
   Future<Map<String, dynamic>> processOMR(File imageFile) async {
     try {

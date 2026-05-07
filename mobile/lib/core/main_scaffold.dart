@@ -31,7 +31,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         onPressed: () => setState(() => _selectedIndex = 2),
         backgroundColor: _selectedIndex == 2 ? AskualaTheme.secondaryColor : AskualaTheme.primaryColor,
         elevation: 4,
-        child: const Icon(Icons.add_a_photo, color: Colors.white, size: 28),
+        child: const Icon(Icons.center_focus_strong, color: Colors.white, size: 28),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -44,9 +44,9 @@ class _MainScaffoldState extends State<MainScaffold> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildNavItem(0, Icons.dashboard_outlined, Icons.dashboard, 'Dashboard'),
+              _buildNavItem(0, Icons.grid_view_outlined, Icons.grid_view_rounded, 'Overview'),
               const SizedBox(width: 40), // Space for FAB
-              _buildNavItem(1, Icons.key_outlined, Icons.key, 'Answer Keys'),
+              _buildNavItem(1, Icons.assignment_outlined, Icons.assignment, 'Answer Key'),
             ],
           ),
         ),

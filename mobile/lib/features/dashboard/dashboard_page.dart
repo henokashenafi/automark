@@ -12,7 +12,7 @@ class DashboardPage extends StatelessWidget {
       backgroundColor: AskualaTheme.backgroundColor,
       appBar: AppBar(
         title: Text(
-          'AUTOMARK AI',
+          'ASKUALA EXAM',
           style: GoogleFonts.dmSans(
             fontWeight: FontWeight.w800,
             fontSize: 18,
@@ -20,11 +20,6 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_outlined),
-          ),
-          const SizedBox(width: 8),
           const CircleAvatar(
             radius: 16,
             backgroundColor: AskualaTheme.primaryColor,
@@ -39,12 +34,12 @@ class DashboardPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hello, Teacher 👋',
+              'Exam Marker',
               style: Theme.of(context).textTheme.headlineMedium,
             ).animate().fade().slideX(),
             const SizedBox(height: 8),
             const Text(
-              'What would you like to do today?',
+              'Select an action to continue',
               style: TextStyle(color: AskualaTheme.mutedTextColor),
             ).animate().fade(delay: 200.ms),
             
@@ -61,37 +56,37 @@ class DashboardPage extends StatelessWidget {
               children: [
                 _buildBentoCard(
                   context,
-                  title: 'Quick Scan',
+                  title: 'Mark Exam',
                   subtitle: 'Scan OMR Sheet',
-                  icon: Icons.qr_code_scanner,
+                  icon: Icons.center_focus_strong,
                   color: AskualaTheme.primaryColor,
                   delay: 300.ms,
                   onTap: () => Navigator.pushNamed(context, '/scan'),
                 ),
                 _buildBentoCard(
                   context,
-                  title: 'Answer Keys',
-                  subtitle: 'Manage Keys',
-                  icon: Icons.key_outlined,
+                  title: 'Answer Key',
+                  subtitle: 'Set Correct Answers',
+                  icon: Icons.assignment_turned_in_outlined,
                   color: AskualaTheme.secondaryColor,
                   delay: 400.ms,
                   onTap: () {},
                 ),
                 _buildBentoCard(
                   context,
-                  title: 'Results',
-                  subtitle: 'View Gradings',
-                  icon: Icons.bar_chart_rounded,
+                  title: 'History',
+                  subtitle: 'Past Gradings',
+                  icon: Icons.history_edu,
                   color: Colors.orange,
                   delay: 500.ms,
                   onTap: () {},
                 ),
                 _buildBentoCard(
                   context,
-                  title: 'History',
-                  subtitle: 'Past Scans',
-                  icon: Icons.history,
-                  color: Colors.purple,
+                  title: 'Settings',
+                  subtitle: 'App Preferences',
+                  icon: Icons.settings_outlined,
+                  color: Colors.blueGrey,
                   delay: 600.ms,
                   onTap: () {},
                 ),
@@ -100,37 +95,27 @@ class DashboardPage extends StatelessWidget {
             
             const SizedBox(height: 32),
             
-            // Recent Activity Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Recent Activity',
-                  style: GoogleFonts.dmSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('See All'),
-                ),
-              ],
+            // Recent Marking Section
+            Text(
+              'Recent Marking',
+              style: GoogleFonts.dmSans(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ).animate().fade(delay: 700.ms),
             
             const SizedBox(height: 16),
             
             _buildActivityItem(
-              title: 'Physics Midterm - Sec A',
-              subtitle: '45 sheets processed',
+              title: 'Final Exam - Grade 12',
+              subtitle: '45 sheets marked',
               time: '2h ago',
               status: 'Completed',
             ).animate().fade(delay: 800.ms).slideY(begin: 0.1),
             
             _buildActivityItem(
-              title: 'Math Quiz #3',
-              subtitle: '12 sheets processed',
+              title: 'Physics Quiz',
+              subtitle: '12 sheets marked',
               time: '5h ago',
               status: 'Completed',
             ).animate().fade(delay: 900.ms).slideY(begin: 0.1),
