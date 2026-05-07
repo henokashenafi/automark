@@ -3,7 +3,8 @@ import base64
 import json
 import cv2
 import numpy as np
-import google.generativeai as genai
+from genai import Client
+from genai.types import Part
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -20,8 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-model = genai.GenerativeModel('models/gemini-flash-latest')
+client = Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def remove_red_ink(img_bgr):
     hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
@@ -34,7 +34,13 @@ def remove_red_ink(img_bgr):
 
 def call_gemini(image_bgr, prompt):
     _, buffer = cv2.imencode('.jpg', image_bgr, [int(cv2.IMWRITE_JPEG_QUALITY), 95])
-    response = model.generate_content([prompt, {'mime_type': 'image/jpeg', 'data': buffer.tobytes()}])
+    response = client.models.generate_content(
+        model='gemini-2.0-flash',
+        contents=[
+            prompt,
+            Part.from_bytes(data=buffer.tobytes(), mime_type='image/jpeg')
+        ]
+    )
     text = response.text.strip()
     if "```json" in text: text = text.split("```json")[1].split("```")[0].strip()
     elif "```" in text: text = text.split("```")[1].split("```")[0].strip()

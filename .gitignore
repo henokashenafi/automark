@@ -1,8 +1,8 @@
-# Backend
-backend/venv/
-backend/__pycache__/
-backend/.env
-backend/*.pyc
+# AI Service
+ai-service/venv/
+ai-service/__pycache__/
+ai-service/.env
+ai-service/*.pyc
 
 # Frontend
 frontend/node_modules/
@@ -10,6 +10,16 @@ frontend/dist/
 frontend/.env
 frontend/.env.local
 
+# Mobile
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+mobile/build/
+mobile/.env
+
 # General
 .DS_Store
 *.log
+venv/
+.env
